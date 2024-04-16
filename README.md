@@ -1,24 +1,32 @@
-# README
+# Resolución de prueba
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Esta aplicación está realizada en Ruby on rails en el Backend, Vuejs en el frontend y Postgresql para la base de datos.
 
-Things you may want to cover:
+### Backend
 
-* Ruby version
+- Para persistir los datos mediante una task  ejecutar el comando:
 
-* System dependencies
+~~~
+    rails feature:get_data
+~~~
 
-* Configuration
+Los endpoints que quedan expuestos son los siguientes:
 
-* Database creation
+Get 
 
-* Database initialization
+- http://127.0.0.1:3000/api/features?page={page}&per_page={per_page}&mag_type%5B%5D={mgtype}%27
 
-* How to run the test suite
+- http://127.0.0.1:3000/api/features
 
-* Services (job queues, cache servers, search engines, etc.)
+- http://127.0.0.1:3000/api/features/{id}/comments
 
-* Deployment instructions
+Post
+- http://127.0.0.1:3000/api/features/{id}/comments
 
-* ...
+### Base de datos
+
+- La creación y configuración de la base de datos se encuentra en el docker file en la carpeta *creation_db*.
+
+## Frontend
+
+El proyecto frontend se encuentra en este link https://github.com/Castilloo/FrogmiFront
