@@ -8,13 +8,18 @@ namespace :feature do
         url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
         response = HTTParty.get(url)
 
-        latest_created_at = Feature.order(created_at: :desc).first.created_at
-        today = Time.now
+        difference_minutes = 0.0
 
-        diference_seconds = today - latest_created_at
-        difference_minutes = (diference_seconds / 60).to_i
+        if Feature.count != 0
+            latest_created_at = Feature.order(created_at: :desc).first.created_at
+            today = Time.now
 
-        if response.success? && difference_minutes > 60
+            diference_seconds = today - latest_created_at
+            difference_minutes = (diference_seconds / 60).to_i
+        end
+
+        if response.success? && difference_minutes > 60 || 
+            response.success? && Feature.count == 0
 
             data_response = JSON.parse(response.body)
             features = data_response['features']
